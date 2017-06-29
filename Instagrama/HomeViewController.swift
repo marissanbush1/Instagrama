@@ -16,6 +16,9 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     
     var post: [PFObject]!
     
+    var refreshControl = UIRefreshControl()
+
+    
     @IBAction func logOutButton(_ sender: Any) {
         
         PFUser.logOutInBackground { (error: Error?) in
@@ -38,6 +41,9 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         homeTableView.dataSource = self
         refresh()
+        
+        refreshControl.addTarget(self, action: #selector(HomeViewController.pullToRefresh(_:)), for: .valueChanged)
+        homeTableView.insertSubview(refreshControl, at: 0)
     }
 
     func refresh(){
@@ -55,6 +61,12 @@ class HomeViewController: UIViewController, UITableViewDataSource {
                 print(error?.localizedDescription)
             }
         }
+    }
+    
+    func pullToRefresh(_ refreshControl: UIRefreshControl){
+        refresh()
+        homeTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     
