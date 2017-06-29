@@ -13,7 +13,8 @@ import ParseUI
 class InstagramPostTableViewCell: UITableViewCell {
 
     @IBOutlet weak var photoView: PFImageView!
-    @IBOutlet weak var captionText: UITextField!
+
+    @IBOutlet weak var captionText: UILabel!
     var instagramPost: PFObject! {
         didSet {
             self.photoView.file = instagramPost["media"] as? PFFile

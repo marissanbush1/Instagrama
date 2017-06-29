@@ -83,6 +83,18 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         return post?.count ?? 0
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        
+        if let indexPath = homeTableView.indexPath(for: cell) {
+            let post = self.post[indexPath.row]
+            
+            let vc = segue.destination as! DetailViewController
+            
+            vc.posts = post
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -92,10 +104,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
+    
     */
 
 }

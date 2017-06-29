@@ -16,7 +16,6 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     @IBOutlet weak var imageToPost: UIImageView!
     
-    @IBOutlet weak var captionTextField: UITextField!
     var postImage = UIImage(named: "imageName")
     
     @IBAction func shareButton(_ sender: UIButton) {
