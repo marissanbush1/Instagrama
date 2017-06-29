@@ -132,7 +132,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="5mL-aF-VSr"/>
                     <connections>
-                        <outlet property="captionTextField" destination="T31-m7-LoH" id="rfL-t7-y40"/>
                         <outlet property="captionToPost" destination="T31-m7-LoH" id="zVO-hp-eRS"/>
                         <outlet property="imageToPost" destination="uhg-c9-Uub" id="ukk-lv-R0A"/>
                     </connections>
@@ -233,17 +232,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="instag" rowHeight="335" id="R2x-lB-LW8">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="instag" selectionStyle="default" indentationWidth="10" reuseIdentifier="instag" rowHeight="335" id="R2x-lB-LW8" customClass="InstagramPostTableViewCell" customModule="Instagrama" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="335"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R2x-lB-LW8" id="sGL-8o-TmS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="334.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T3H-yd-S1u">
-                                                    <rect key="frame" x="0.0" y="8" width="375" height="293"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="caption" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zhv-RZ-wSG">
                                                     <rect key="frame" x="0.0" y="296" width="375" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -251,8 +246,16 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="photoView" translatesAutoresizingMaskIntoConstraints="NO" id="LOm-yt-JUr" customClass="PFImageView">
+                                                    <rect key="frame" x="0.0" y="-18" width="375" height="268"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="captionText" destination="Zhv-RZ-wSG" id="eUY-hi-SAU"/>
+                                            <outlet property="photoView" destination="LOm-yt-JUr" id="ni9-du-CkJ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -272,10 +275,13 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="homeTableView" destination="Xys-CU-QAl" id="V0q-hX-CfU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LP3-NY-Vaw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2016.8" y="2082.9085457271367"/>
+            <point key="canvasLocation" x="2016.5" y="2082.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rlY-Wg-qk6">

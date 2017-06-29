@@ -8,9 +8,14 @@
 
 import UIKit
 import Parse
+import ParseUI
 
-class HomeViewController: UIViewController {
-
+class HomeViewController: UIViewController, UITableViewDataSource {
+    
+    @IBOutlet weak var homeTableView: UITableView!
+    
+    var post: [PFObject]!
+    
     @IBAction func logOutButton(_ sender: Any) {
         
         PFUser.logOutInBackground { (error: Error?) in
@@ -31,6 +36,8 @@ class HomeViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        homeTableView.dataSource = self
+        refresh()
     }
 
     func refresh(){
@@ -42,12 +49,28 @@ class HomeViewController: UIViewController {
         // fetch data asynchronously
         query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) -> Void in
             if let posts = posts {
-                // do something with the data fetched
+                self.post = posts
+                self.homeTableView.reloadData()
             } else {
-                // handle error
+                print(error?.localizedDescription)
             }
         }
     }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "instag", for: indexPath) as! InstagramPostTableViewCell
+        let post = self.post![indexPath.row]
+        
+        cell.instagramPost = post
+        return cell
+
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return post?.count ?? 0
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
