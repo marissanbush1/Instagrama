@@ -21,7 +21,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBAction func shareButton(_ sender: UIButton) {
        
         Post.postUserImage(image: imageToPost.image, withCaption: self.captionToPost.text) { (status: Bool, error: Error?) in
-            if status            {
+            if status {
                 print("Successfully posted")
             }else{
                 print(error?.localizedDescription)
